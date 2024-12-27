@@ -6,7 +6,7 @@
 /*   By: ldei-sva <ldei-sva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 21:23:04 by ldei-sva          #+#    #+#             */
-/*   Updated: 2024/12/16 17:08:57 by ldei-sva         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:25:16 by ldei-sva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,30 +77,31 @@ char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		n;
-	int		words;
-	int		characters;
+	int		nitems;
 
 	n = 0;
-	characters = 0;
-	words = countwords(s, c);
-	array = (char **) malloc ((words + 1) * (sizeof(char *)));
+	nitems = countwords(s, c);
+	array = (char **) malloc ((nitems + 1) * (sizeof(char *)));
 	if (array == NULL)
 		return (NULL);
-	while (*s && words != 0)
+	while (*s && nitems != 0)
 	{
-		s = ft_strtrim(s, &c);
-		characters = countlen(s, c);
-		createstr(array, n, characters, s);
-		if (array == NULL)
-			return (NULL);
-		n++;
-		s += characters;
+		if (*s == c)
+			s++;
+		else
+		{
+			nitems = countlen(s, c);
+			createstr(array, n, nitems, s);
+			if (array == NULL)
+				return (NULL);
+			n++;
+			s += nitems;
+		}
 	}
 	array[n] = NULL;
 	return (array);
 }
-
-#include <stdio.h>
+/*#include <stdio.h>
 
 int	main()
 {
@@ -110,7 +111,7 @@ int	main()
 	i = 0;
 	if (!array)
 			return (0);
-	array = ft_split("ciao bella", ' ');
+	array = ft_split("sdgasfgs", ' ');
 	if (!array)
 			return (0);
 	i = 0;
@@ -120,4 +121,4 @@ int	main()
 		i++;
 	}
 	free(array);
-}
+}*/

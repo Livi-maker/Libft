@@ -6,7 +6,7 @@
 /*   By: ldei-sva <ldei-sva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:22:25 by ldei-sva          #+#    #+#             */
-/*   Updated: 2024/12/12 16:50:27 by ldei-sva         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:16:38 by ldei-sva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*pointer;
 
+	if (size != 0 && nmemb > ((size_t) - 1) / size)
+		return (NULL);
 	pointer = malloc (nmemb * size);
 	if (pointer == NULL)
 		return (NULL);
